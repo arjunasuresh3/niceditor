@@ -10,8 +10,8 @@ function guid() {
 function asd() {
     for (var i=0;i<10;i++) {
         instanceCount = instanceCount + 1;
-        var uuid = guid();
-        var divObj = document.createElement('div');
+        var uuid = guid(),
+        divObj = document.createElement('div');
         divObj.className = 'top_div';
         divObj.id = 'top_div_nic_' + uuid;
         divObj.innerHTML = 'Nic Editor';
