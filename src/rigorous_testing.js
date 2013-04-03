@@ -38,7 +38,7 @@ function dsa() {
                        var sEdId = aEds[i];
                        sEdId = sEdId.id;
                        var asd = nicEditors.findEditor(sEdId);
-                       // asd.removeInstance();
+                       // asd.removeInstance(); // this method not to be used as it will look into complete DOM to find editor node
                        asd.remove();
                        sEdId = null;
                        asd = null;
