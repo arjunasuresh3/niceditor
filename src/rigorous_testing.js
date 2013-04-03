@@ -1,0 +1,48 @@
+function S4() {
+   return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+}
+
+function guid() {
+   return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
+
+function asd() {
+    for (var i=0;i<10;i++) {
+        var uuid = guid();
+        var divObj = document.createElement('div');
+        divObj.className = 'top_div';
+        divObj.id = 'top_div_nic_' + uuid;
+        divObj.innerHTML = 'Nic Editor';
+        var textareaObj = document.createElement('textarea');
+        textareaObj.className = 'simpleEdit';
+        textareaObj.id = 'nic_' + uuid;
+        textareaObj.style.cssText="width: 300px; height: 100px;";
+        divObj.appendChild(textareaObj);
+        document.body.appendChild(divObj);
+        new nicEditor({fullPanel : true}).panelInstance(textareaObj.id,{hasPanel : true});
+    }
+    return true;
+}
+
+function dsa() {
+    setTimeout(function () {
+                   var aEds = document.querySelectorAll('textarea.simpleEdit');
+                   for (var i=0;i<aEds.length;i++) {
+                       var sEdId = aEds[i];
+                       sEdId = sEdId.id;
+                       var asd = nicEditors.findEditor(sEdId);
+                       // asd.removeInstance();
+                       asd.remove();
+                       sEdId = null;
+                       asd = null;
+                   }
+                   aEds = null;
+                   document.body.innerHTML = '';
+                   return true;
+               },2);
+}
+
+setInterval(function() {
+                asd();
+                dsa();
+            },10000);
