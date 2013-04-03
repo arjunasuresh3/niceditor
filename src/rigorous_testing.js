@@ -1,3 +1,4 @@
+instanceCount = 0;
 function S4() {
    return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 }
@@ -8,6 +9,7 @@ function guid() {
 
 function asd() {
     for (var i=0;i<10;i++) {
+        instanceCount = instanceCount + 1;
         var uuid = guid();
         var divObj = document.createElement('div');
         divObj.className = 'top_div';
@@ -21,13 +23,18 @@ function asd() {
         document.body.appendChild(divObj);
         new nicEditor({fullPanel : true}).panelInstance(textareaObj.id,{hasPanel : true});
     }
+    console.log('Totalcount');
+    console.log(instanceCount);
     return true;
 }
 
 function dsa() {
     setTimeout(function () {
-                   var aEds = document.querySelectorAll('textarea.simpleEdit');
-                   for (var i=0;i<aEds.length;i++) {
+                   var aEds = document.querySelectorAll('textarea.simpleEdit'),
+                   insCount = aEds.length;
+                   console.log('delcount');
+                   console.log(insCount);
+                   for (var i=0;i<insCount;i++) {
                        var sEdId = aEds[i];
                        sEdId = sEdId.id;
                        var asd = nicEditors.findEditor(sEdId);
@@ -42,7 +49,9 @@ function dsa() {
                },2);
 }
 
-setInterval(function() {
-                asd();
-                dsa();
-            },10000);
+var intervalId = setInterval(function() {
+                                 asd();
+                                 dsa();
+                             },10000);
+
+console.log(intervalId); // setinterval id to stop the process
